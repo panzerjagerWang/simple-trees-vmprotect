@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simple Trees Beat Deep Networks at Attributing VMProtect-Protected Malware</title>
+<meta name="description" content="Project page for a leakage-free, forgery-aware evaluation of static APT-family attribution of VMProtect-protected malware.">
+<style>
+  :root{
+    --accent:#D55E00; --ink:#1b1b1b; --muted:#666; --line:#e6e6e6; --bg:#ffffff; --card:#faf9f7;
+    --maxw:860px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 16px}
+  header{padding:48px 16px 24px;text-align:center;border-bottom:1px solid var(--line)}
+  h1{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:clamp(22px,4.2vw,32px);
+    line-height:1.25;margin:0 auto 18px;max-width:780px}
+  .authors{font-size:17px;margin:6px 0 2px}
+  .authors a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent}
+  .authors a:hover{border-bottom-color:var(--accent)}
+  .affil{color:var(--muted);font-size:14px;margin:4px 0 2px}
+  .venue{color:var(--muted);font-size:14px;margin:6px 0 18px;font-style:italic}
+  .links{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:6px}
+  .btn{display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:999px;
+    background:var(--ink);color:#fff;text-decoration:none;font-size:14px;font-weight:600;border:1px solid var(--ink)}
+  .btn:hover{background:var(--accent);border-color:var(--accent)}
+  .btn.ghost{background:#fff;color:var(--ink)}
+  .btn.ghost:hover{color:var(--accent);border-color:var(--accent);background:#fff}
+  main{padding:8px 0 40px}
+  section{padding:26px 16px;border-bottom:1px solid var(--line)}
+  h2{font-family:Georgia,"Times New Roman",serif;font-size:21px;margin:0 0 12px}
+  p{margin:0 0 14px}
+  figure{margin:14px 0 6px;text-align:center}
+  figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px;background:#fff}
+  figcaption{color:var(--muted);font-size:13.5px;margin-top:10px;text-align:left;max-width:760px;margin-left:auto;margin-right:auto}
+  .abstract{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+  .abstract p{margin:0}
+  table{width:100%;border-collapse:collapse;font-size:14.5px;margin:6px 0 4px}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+  th{color:var(--muted);font-weight:600}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  tr.hero td{background:#fff5ee}
+  tr.hero td:first-child{color:var(--accent);font-weight:700}
+  .hero-num{color:var(--accent);font-weight:700}
+  ul.find{margin:4px 0 0;padding-left:20px}
+  ul.find li{margin:0 0 9px}
+  pre{background:#0f1115;color:#e7e7e7;border-radius:10px;padding:16px;overflow:auto;font-size:13px;line-height:1.5}
+  code{font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace}
+  .note{color:var(--muted);font-size:13px}
+  footer{padding:26px 16px 50px;text-align:center;color:var(--muted);font-size:13px}
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){--ink:#ededed;--muted:#a3a3a3;--line:#2a2a2a;--bg:#131417;--card:#1b1d22}
+    :root:not([data-theme="light"]) .btn.ghost{background:#131417}
+    :root:not([data-theme="light"]) figure img{background:#fff}
+    :root:not([data-theme="light"]) tr.hero td{background:#2a1c12}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Simple Trees Beat Deep Networks at Attributing VMProtect-Protected Malware:<br>A Leakage-Free, Forgery-Aware Evaluation</h1>
+    <div class="authors">
+      Xubo&nbsp;Fang<sup>&#42;</sup>, Haochen&nbsp;Dong, Lei&nbsp;Zhong, Sicheng&nbsp;Han, and Jiaqing&nbsp;Wang
+    </div>
+    <div class="affil">Graduate School of Natural Science and Technology, Kanazawa University, Kanazawa, Japan</div>
+    <div class="affil"><sup>&#42;</sup>Corresponding author</div>
+    <div class="venue">Under review, IEEE Transactions on Dependable and Secure Computing</div>
+    <div class="links">
+      <a class="btn" href="paper.pdf">&#128196; Paper (PDF)</a>
+      <a class="btn ghost" href="supplementary.pdf">Supplementary</a>
+      <a class="btn ghost" href="#bibtex">BibTeX</a>
+      <a class="btn ghost" href="https://github.com/panzerjagerWang/simple-trees-vmprotect">Code &amp; data (upon publication)</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="wrap">
+      <h2>Abstract</h2>
+      <div class="abstract"><p>
+        Static classifiers must attribute malware to threat groups even after obfuscation has rewritten its code.
+        However, classifiers of protected malware were evaluated with splits that leak executables or builds between
+        training and testing, and it is unknown which parts of a protected file identify its family or whether an
+        adversary can rewrite them. Therefore, we propose a build-grouped, forgery-aware evaluation of static
+        attribution that tests classifiers on unseen and later builds and on forged, edited, or copied headers.
+        We compared gradient-boosted trees, eight image and byte networks, and a multi-view Transformer we developed
+        on executables of nine advanced persistent threat groups. On unseen builds, gradient-boosted trees on the
+        loader-relevant header fields, which VMProtect keeps, attributed protected executables most accurately, with
+        a macro-<em>F</em><sub>1</sub> of 90.9%, against 87.5% for the Transformer and at most 64.1% for the networks.
+        The trees trained in seconds and were unaffected by forging the descriptive fields; copying another group's
+        descriptive fields, however, lowered the macro-<em>F</em><sub>1</sub> of trees on all header fields from 92.5%
+        to 50.1%. These results show that simple gradient-boosted trees attribute VMProtect-protected malware from its
+        loader-relevant header structure when related builds occur in training, whereas descriptive fields can be forged.
+      </p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Overview</h2>
+      <figure>
+        <img src="assets/fig1_concept.png" alt="Concept figure: VMProtect scrambles the bytes but the PE header fields survive; gradient-boosted trees on them attribute the APT family most accurately.">
+        <figcaption><b>Task, method, and recommended attributor.</b> VMProtect rewrites a structured executable into
+        near-uniform noise and grows it about fiftyfold, so image and byte networks fail, but the PE header fields
+        survive. Gradient-boosted trees on the loader-relevant fields attribute the APT family most accurately, above
+        the multi-view Transformer (ObfusFormer) and the byte networks (protected-test macro-<em>F</em><sub>1</sub>,
+        folds grouped by build).</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Key results</h2>
+      <p>Attribution of VMProtect-protected executables to their APT family, protected-test macro-<em>F</em><sub>1</sub>
+      on folds grouped by build (nine groups, Joint protocol).</p>
+      <table>
+        <thead><tr><th>Attributor</th><th>Reads</th><th class="num">Protected macro-F<sub>1</sub></th></tr></thead>
+        <tbody>
+          <tr class="hero"><td>Gradient-boosted trees</td><td>loader-relevant header fields</td><td class="num">90.9%</td></tr>
+          <tr><td>ObfusFormer (ours)</td><td>same fields, multi-view Transformer</td><td class="num">87.5%</td></tr>
+          <tr><td>Image &amp; byte networks</td><td>raw / scrambled bytes</td><td class="num">&#8804;&nbsp;64.1%</td></tr>
+        </tbody>
+      </table>
+      <figure>
+        <img src="assets/fig7_mainbars.png" alt="Bar chart of protected-test macro-F1 for every method, on original and forged samples.">
+        <figcaption>Every method, on the original protected executables and on executables with forged descriptive
+        header fields (bars: means over five folds; dots: folds; dashed line: chance). The trees on the
+        loader-relevant fields (highlighted) are forgery-robust.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Findings</h2>
+      <ul class="find">
+        <li><b>Simple trees win, cheaply.</b> Gradient-boosted trees on the loader-relevant header fields are the most
+          accurate attributor and train in <b>seconds on a CPU</b>, versus minutes on a GPU for the deep networks.</li>
+        <li><b>What survives is what matters.</b> VMProtect keeps the loader-relevant header structure; the family
+          signal lives mainly in the section table and data directories, a size fingerprint of related builds.</li>
+        <li><b>Forgery-aware.</b> Trees on the loader-relevant fields are unaffected by forging the descriptive fields,
+          whereas classifiers that read the descriptive fields can be redirected by copying another group's fields
+          (92.5%&nbsp;&rarr;&nbsp;50.1%). Detection reaches 94.7% accuracy; attribution of later builds stays ahead at 61.0%.</li>
+        <li><b>Leakage-free protocol.</b> Folds grouped by build and a split by time remove the executable- and
+          build-level leakage of prior released image splits.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="bibtex">
+    <div class="wrap">
+      <h2>BibTeX</h2>
+      <pre><code>@article{fang2026simpletrees,
+  title   = {Simple Trees Beat Deep Networks at Attributing VMProtect-Protected
+             Malware: A Leakage-Free, Forgery-Aware Evaluation},
+  author  = {Fang, Xubo and Dong, Haochen and Zhong, Lei and Han, Sicheng and Wang, Jiaqing},
+  journal = {IEEE Transactions on Dependable and Secure Computing},
+  note    = {Under review},
+  year    = {2026}
+}</code></pre>
+      <p class="note">Code and derived data will be released at this repository upon publication.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    Kanazawa University &middot; Correspondence: Xubo Fang &middot; This page accompanies a manuscript under review.
+  </div>
+</footer>
+</body>
+</html>
