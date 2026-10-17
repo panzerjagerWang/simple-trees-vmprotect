@@ -11,5 +11,5 @@ networks and a multi-view Transformer (ObfusFormer), while training in seconds o
 Manuscript under review (IEEE Transactions on Dependable and Secure Computing).
 Code and derived data will be released at this repository upon publication.
 
-Authors: Xubo Fang (corresponding), Haochen Dong, Lei Zhong, Sicheng Han, Jiaqing Wang
-(Kanazawa University).
+Authors: Xubo Fang (corresponding), Haochen Dong, Jiaqing Wang, Sicheng Han (Kanazawa University).
+Fang, Dong, and Wang contributed equally.
